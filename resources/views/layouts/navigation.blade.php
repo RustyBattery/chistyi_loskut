@@ -48,6 +48,11 @@
                         Контакты
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('price')" :active="request()->routeIs('price')">
+                        Прайс
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Hamburger -->
@@ -76,6 +81,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('contacts')" :active="request()->routeIs('contacts')">
                 Контакты
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('price')" :active="request()->routeIs('price')">
+                Прайс
             </x-responsive-nav-link>
         </div>
 

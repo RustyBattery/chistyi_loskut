@@ -71,6 +71,11 @@
                             Пользователи
                         </x-nav-link>
                     </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin.settings.index')" :active="request()->routeIs('admin.settings.index')">
+                            Настройки
+                        </x-nav-link>
+                    </div>
                 @endif
             </div>
 
@@ -131,6 +136,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 Пользователи
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.settings.index')" :active="request()->routeIs('admin.settings.index')">
+                Настройки
             </x-responsive-nav-link>
         </div>
 

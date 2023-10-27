@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,8 @@ Route::get('/catalog', [CategoryController::class, 'index'])->name('catalog');
 Route::get('/catalog/{category}', [CategoryController::class, 'show'])->name('products');
 Route::get('/delivery', [PageController::class, 'delivery'])->name('delivery');
 Route::get('/contacts', [PageController::class, 'contacts'])->name('contacts');
+Route::get('/price', [PriceController::class, 'index'])->name('price');
+Route::get('/price/download', [PriceController::class, 'get_file'])->name('price.download');
 Route::post('/order', [OrderController::class, 'create'])->name('order.create');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -54,6 +58,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::prefix('settings')->group(function (){
+        Route::get('/', [SettingsController::class, 'index'])->name('admin.settings.index');
+        Route::post('/price', [SettingsController::class, 'update_price'])->name('admin.settings.price');
+    });
 });
 
 require __DIR__ . '/auth.php';
